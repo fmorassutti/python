@@ -1,0 +1,58 @@
+## ORACLE ##
+
+https://tiagojneves.wordpress.com/2014/05/14/instalando-o-oracle-11g-express-edition-no-debian-wheezy/
+
+
+export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe
+export ORACLE_SID=XE
+export NLS_LANG=`$ORACLE_HOME/bin/nls_lang.sh`
+export PATH=$ORACLE_HOME/bin:$PATH
+export LD_LIBRARY_PATH=/u01/app/oracle/product/11.2.0/xe/lib
+
+sqlplus
+
+Enter user-name: sys as sysdba
+Enter password:
+Connected to an idle instance.
+
+
+ORACLE instance started.
+
+Total System Global Area  636100608 bytes
+Fixed Size                  1301784 bytes
+Variable Size             301990632 bytes
+Database Buffers          327155712 bytes
+Redo Buffers                5652480 bytes
+Database mounted.
+Database opened.
+SQL>  shutdown immediate
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+SQL> startup open
+ORACLE instance started.
+
+Total System Global Area  636100608 bytes
+Fixed Size                  1301784 bytes
+Variable Size             301990632 bytes
+Database Buffers          327155712 bytes
+Redo Buffers                5652480 bytes
+Database mounted.
+Database opened.
+SQL> quit
+
+
+Then log back on using the username and password you created during the installation.
+
+
+
+CREATE USER db1 IDENTIFIED BY db1 DEFAULT TABLESPACE users TEMPORARY TABLESPACE temp QUOTA UNLIMITED ON users;
+
+GRANT CREATE session, CREATE table, CREATE view, CREATE procedure, CREATE synonym, CREATE sequence TO db1;
+
+
+CREATE SEQUENCE seq_client_id
+ START WITH     1000
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE;
