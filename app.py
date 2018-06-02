@@ -26,6 +26,7 @@ logger.addHandler(handler)
 
 app = Flask(__name__)
 
+#Get list of clients from database
 @app.route('/getClients', methods=['GET'])
 def get_clients():
     clients = []
